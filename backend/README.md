@@ -76,7 +76,7 @@ The API will be available at:
 - **Home Page**: http://localhost:3000 - Beautiful landing page with API overview
 - **Interactive Documentation**: http://localhost:3000/docs - Scalar API explorer
 - **OpenAPI Spec**: http://localhost:3000/api/openapi.json - Raw OpenAPI specification
-- **Health Check**: http://localhost:3000/health - API status endpoint
+- **Health Check**: http://localhost:3000/api/v1/health - API status endpoint
 
 ## 📖 API Documentation
 
@@ -172,8 +172,7 @@ backend/
     │   └── classes.ts       # Class business logic
     └── types/
         ├── api.ts           # API type definitions
-        └── database.ts      # Database type definitions
-```
+        └
     └── types/
         ├── database.ts     # Database type definitions
         └── api.ts          # API request/response types
