@@ -10,10 +10,6 @@
             "source": "/api/(.*)",
             "headers": [
                 {
-                    "key": "Access-Control-Allow-Origin",
-                    "value": "https://schoolhub-project.vercel.app"
-                },
-                {
                     "key": "Access-Control-Allow-Methods",
                     "value": "GET, POST, OPTIONS"
                 },

@@ -1,3 +1,5 @@
+import { useRuntimeConfig } from "nitropack/runtime"
+
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig()
     const openApiSpec = {
@@ -13,7 +15,7 @@ export default defineEventHandler(async (event) => {
         },
         servers: [
             {
-                url: config.corsOrigin || 'https://schoolhub-project-production.up.railway.app/',
+                url: config.corsOrigin || 'https://schoolhub-project-production.up.railway.app',
                 description: 'Development server',
             },
         ],
