@@ -1,10 +1,11 @@
-import { ClassesService } from '../../../../services/classes'
+import { ClassesService } from '../../../services/classes'
 
 export default defineEventHandler(async (event) => {
     try {
-        const id = getRouterParam(event, 'id')
+        const query = getQuery(event)
+        const classId = query.classId as string
 
-        if (!id) {
+        if (!classId) {
             throw createError({
                 statusCode: 400,
                 statusMessage: 'Bad Request',
@@ -12,12 +13,12 @@ export default defineEventHandler(async (event) => {
             })
         }
 
-        const students = await ClassesService.getStudents(id)
+        const students = await ClassesService.getStudents(classId)
         return { data: students }
     } catch (error) {
         console.error('Error fetching class students:', error)
 
-        if (error.statusCode) {
+        if (error && typeof error === 'object' && 'statusCode' in error) {
             throw error
         }
 

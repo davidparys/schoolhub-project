@@ -50,7 +50,7 @@ apiClient.interceptors.request.use(
         return config;
     },
     (error: any) => {
-        return Promise.reject(error);
+        return Promise.reject(error instanceof Error ? error : new Error(String(error)));
     }
 );
 
@@ -143,7 +143,7 @@ export class StudentsAPI {
     }
 
     static async assignToClass(studentId: string, classId: string): Promise<void> {
-        await apiRequest<void>('POST', `/students/${studentId}/assign-class`, { classId });
+        await apiRequest<void>('POST', `/students/classes/assign?studentId=${studentId}&classId=${classId}`);
     }
 
     static async removeFromClass(studentId: string, classId: string): Promise<void> {
@@ -181,7 +181,7 @@ export class ClassesAPI {
     }
 
     static async getStudents(classId: string): Promise<Student[]> {
-        return apiRequest<Student[]>('GET', `/classes/${classId}/students`);
+        return apiRequest<Student[]>('GET', `/classes/students/get?classId=${classId}`);
     }
 }
 
