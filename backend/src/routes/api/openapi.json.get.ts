@@ -15,9 +15,17 @@ export default defineEventHandler(async (event) => {
         },
         servers: [
             {
-                url: config.corsOrigin || 'https://schoolhub-project-production.up.railway.app',
-                description: 'Development server',
+                url: 'https://schoolhub-project-production.up.railway.app',
+                description: 'Production Server',
             },
+            {
+                url: 'http://localhost:8000',
+                description: 'Local Server',
+            },
+            {
+                url: process.env.BACKEND_URL,
+                description: 'Env Variable Server',
+            }
         ],
         tags: [
             {
