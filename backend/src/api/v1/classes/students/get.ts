@@ -1,4 +1,4 @@
-import { ClassesService } from '../../../services/classes'
+import { ClassesService } from '../../../../services/classes'
 
 export default defineEventHandler(async (event) => {
     try {

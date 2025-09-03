@@ -79,9 +79,12 @@ export default {
     // Assignment dialog
     assignment: {
         title: 'Przypisz Uczniów do Klasy',
+        classSubtitle: 'Przypisz {name} do klas',
         studentSubtitle: 'Przypisz {name} do klas',
         availableStudents: 'Dostępni Uczniowie',
         assignedStudents: 'Przypisani Uczniowie',
+        noAvailableStudents: 'Wszystkie uczniowie są przypisani',
+        noAssignedStudents: 'Żaden uczeń nie jest przypisany',
         addSelected: 'Dodaj Zaznaczonych',
         removeSelected: 'Usuń Zaznaczonych',
         assignAll: 'Przypisz Wszystkich',
@@ -103,11 +106,13 @@ export default {
         studentAdded: 'Uczeń został dodany pomyślnie',
         studentUpdated: 'Uczeń został zaktualizowany pomyślnie',
         studentDeleted: 'Uczeń został usunięty pomyślnie',
+        studentRemovedFromClass: 'Uczeń został usunięty z klasy',
         classAdded: 'Klasa została dodana pomyślnie',
         classUpdated: 'Klasa została zaktualizowana pomyślnie',
         classDeleted: 'Klasa została usunięta pomyślnie',
         studentsAssigned: '{count} uczniów przypisano do klasy',
         studentsRemoved: '{count} uczniów usunięto z klasy',
+        classAssignmentsUpdated: 'Zmiany w przypisaniu uczniów do klasy zostały zapisane pomyślnie, {added} dodano, {removed} usunięto',
         assignmentsSaved: 'Zmiany zostały zapisane pomyślnie',
         error: 'Wystąpił błąd',
         loadError: 'Nie udało się załadować danych'
