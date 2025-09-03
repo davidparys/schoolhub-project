@@ -1,0 +1,197 @@
+import fs from 'fs'
+import path from 'path'
+
+/**
+ * Generate API documentation script for School Hub API
+ * This script creates comprehensive OpenAPI documentation
+ */
+
+const generateDocs = () => {
+  console.log('🚀 Generating School Hub API Documentation...')
+  
+  const openApiSpec = {
+    openapi: '3.0.0',
+    info: {
+      title: 'School Hub API',
+      version: '1.0.0',
+      description: 'A comprehensive REST API for managing students, classes, and class assignments in a school management system.',
+      contact: {
+        name: 'School Hub API Support',
+        email: 'support@schoolhub.com'
+      }
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+        description: 'Development server',
+      },
+      {
+        url: 'https://your-api-domain.vercel.app',
+        description: 'Production server',
+      },
+    ],
+    tags: [
+      {
+        name: 'Students',
+        description: 'Operations related to student management'
+      },
+      {
+        name: 'Classes',
+        description: 'Operations related to class management'
+      },
+      {
+        name: 'Assignments',
+        description: 'Operations for managing student-class assignments'
+      }
+    ],
+    paths: {
+      '/api/v1/students': {
+        get: {
+          tags: ['Students'],
+          summary: 'Get all students',
+          description: 'Retrieve a list of all students with their assigned classes',
+          responses: {
+            200: {
+              description: 'List of students retrieved successfully',
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      data: {
+                        type: 'array',
+                        items: { $ref: '#/components/schemas/Student' }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            500: { $ref: '#/components/responses/InternalServerError' }
+          }
+        },
+        post: {
+          tags: ['Students'],
+          summary: 'Create a new student',
+          description: 'Create a new student with first name and last name',
+          requestBody: {
+            required: true,
+            content: {
+              'application/json': {
+                schema: { $ref: '#/components/schemas/CreateStudentRequest' }
+              }
+            }
+          },
+          responses: {
+            201: {
+              description: 'Student created successfully',
+              content: {
+                'application/json': {
+                  schema: {
+                    type: 'object',
+                    properties: {
+                      data: { $ref: '#/components/schemas/Student' }
+                    }
+                  }
+                }
+              }
+            },
+            400: { $ref: '#/components/responses/BadRequest' },
+            500: { $ref: '#/components/responses/InternalServerError' }
+          }
+        }
+      }
+      // ... more endpoints would be defined here
+    },
+    components: {
+      schemas: {
+        Student: {
+          type: 'object',
+          description: 'Student entity with personal information and class assignments',
+          properties: {
+            id: {
+              type: 'string',
+              format: 'uuid',
+              description: 'Unique identifier for the student',
+              example: '550e8400-e29b-41d4-a716-446655440000'
+            },
+            firstName: {
+              type: 'string',
+              description: 'Student\'s first name',
+              example: 'John'
+            },
+            lastName: {
+              type: 'string',
+              description: 'Student\'s last name',
+              example: 'Doe'
+            },
+            classIds: {
+              type: 'array',
+              description: 'List of class IDs the student is assigned to',
+              items: { type: 'string', format: 'uuid' },
+              example: ['550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440002']
+            }
+          },
+          required: ['id', 'firstName', 'lastName', 'classIds']
+        },
+        CreateStudentRequest: {
+          type: 'object',
+          description: 'Request payload for creating a new student',
+          properties: {
+            firstName: {
+              type: 'string',
+              minLength: 1,
+              maxLength: 64,
+              description: 'Student\'s first name',
+              example: 'John'
+            },
+            lastName: {
+              type: 'string',
+              minLength: 1,
+              maxLength: 64,
+              description: 'Student\'s last name',
+              example: 'Doe'
+            }
+          },
+          required: ['firstName', 'lastName']
+        }
+        // ... more schemas would be defined here
+      },
+      responses: {
+        BadRequest: {
+          description: 'Invalid request data',
+          content: {
+            'application/json': {
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+            }
+          }
+        },
+        InternalServerError: {
+          description: 'Internal server error',
+          content: {
+            'application/json': {
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Write the OpenAPI spec to a file
+  const outputPath = path.join(process.cwd(), 'docs', 'openapi.json')
+  const docsDir = path.dirname(outputPath)
+  
+  if (!fs.existsSync(docsDir)) {
+    fs.mkdirSync(docsDir, { recursive: true })
+  }
+  
+  fs.writeFileSync(outputPath, JSON.stringify(openApiSpec, null, 2))
+  
+  console.log('✅ API documentation generated successfully!')
+  console.log(`📁 Documentation saved to: ${outputPath}`)
+  console.log('🔗 You can view the API documentation at: http://localhost:3000/docs')
+}
+
+// Run the documentation generation
+generateDocs()

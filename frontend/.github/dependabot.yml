@@ -1,0 +1,45 @@
+version: 2
+updates:
+  # Frontend dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Warsaw"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "davidparys"
+    assignees:
+      - "davidparys"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    groups:
+      quasar:
+        patterns:
+          - "@quasar/*"
+          - "quasar"
+      vue:
+        patterns:
+          - "vue*"
+          - "@vue/*"
+      dev-dependencies:
+        dependency-type: "development"
+        patterns:
+          - "*"
+
+  # Backend dependencies (Deno)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Warsaw"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "davidparys"
+    assignees:
+      - "davidparys"

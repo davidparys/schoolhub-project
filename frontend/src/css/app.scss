@@ -1,0 +1,119 @@
+// Academic theme global styles based on design specification
+
+// Import Google Fonts for academic typography
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@600;700&family=Inter:wght@400;600&display=swap');
+
+// Global typography settings
+body {
+  font-family: 'Inter', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: $academic-body;
+  background-color: $academic-background;
+}
+
+// Heading styles with serif font
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', Georgia, serif;
+  color: $academic-heading;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+// Academic card styling
+.academic-card {
+  background: $academic-surface;
+  border: 1px solid $academic-border;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(27, 39, 58, 0.06);
+  
+  .q-card__section {
+    padding: 24px;
+  }
+}
+
+// Spacing utilities based on design tokens
+.spacing-xs { margin: 4px; }
+.spacing-sm { margin: 8px; }
+.spacing-md { margin: 16px; }
+.spacing-lg { margin: 24px; }
+.spacing-xl { margin: 40px; }
+
+.padding-xs { padding: 4px; }
+.padding-sm { padding: 8px; }
+.padding-md { padding: 16px; }
+.padding-lg { padding: 24px; }
+.padding-xl { padding: 40px; }
+
+// Muted text styling
+.text-muted {
+  color: $academic-muted;
+  font-size: 13px;
+}
+
+// Academic table styling for card-like tables
+.academic-table {
+  .q-table__card {
+    background: $academic-surface;
+    border: 1px solid $academic-border;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(27, 39, 58, 0.06);
+  }
+  
+  .q-table tbody tr:hover {
+    background-color: $academic-muted-surface;
+  }
+  
+  .q-table th {
+    color: $academic-heading;
+    font-weight: 600;
+  }
+  
+  .q-table td {
+    color: $academic-body;
+  }
+}
+
+// App layout adjustments
+.q-layout {
+  background-color: $academic-background;
+}
+
+// Header styling
+.q-header {
+  height: 64px;
+  background: $academic-background;
+  color: $academic-heading;
+  border-bottom: 1px solid $academic-border;
+  box-shadow: 0 2px 4px rgba(27, 39, 58, 0.04);
+}
+
+// Button customizations for academic theme
+.q-btn {
+  border-radius: 8px;
+  
+  &.q-btn--rounded {
+    border-radius: 40px;
+  }
+}
+
+// Dialog customizations
+.q-dialog .q-card {
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(27, 39, 58, 0.12);
+}

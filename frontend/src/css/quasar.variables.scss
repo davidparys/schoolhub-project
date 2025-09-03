@@ -1,0 +1,36 @@
+// Quasar SCSS (& Sass) Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
+
+// Check documentation for full list of Quasar variables
+
+// Your own variables (that are declared here) and Quasar's own
+// ones will be available out of the box in your .vue/.scss/.sass files
+
+// Academic theme colors based on design specification
+// Primary: Academic blue for actions and links
+$primary: #2B6CB0;
+// Secondary: Soft slate-blue for subtle accents  
+$secondary: #8AA4C6;
+// Accent: Keep neutral for form elements
+$accent: #6B7280;
+
+$dark: #0B1A2B;
+$dark-page: #FAFBFC;
+
+// Status colors as specified in design
+$positive: #16A34A;
+$negative: #DC2626;
+$info: #2B6CB0;
+$warning: #F59E0B;
+
+// Custom academic theme variables
+$academic-background: #FFFFFF;
+$academic-surface: #FAFBFC;
+$academic-border: #E6EEF5;
+$academic-muted-surface: #F4F7FA;
+
+$academic-heading: #0B1A2B;
+$academic-body: #263238;
+$academic-muted: #6B7280;

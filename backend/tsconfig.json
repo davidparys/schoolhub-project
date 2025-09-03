@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "strict": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "types": [
+            "node"
+        ],
+        "lib": [
+            "ES2022",
+            "dom"
+        ]
+    },
+    "include": [
+        "src/**/*",
+        "nitro.config.ts",
+        "build.js"
+    ],
+    "exclude": [
+        "node_modules",
+        ".nitro",
+        ".output"
+    ]
+}

@@ -1,0 +1,106 @@
+name: Auto Translate i18n Files
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'src/i18n/en-US.json'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'src/i18n/en-US.json'
+
+jobs:
+  translate:
+    name: Auto Translate
+    runs-on: ubuntu-latest
+    
+    # Only run on pushes to main/develop, not on PRs (to avoid API costs)
+    if: github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install vue-i18n-translator
+        run: npm install -g vue-i18n-translator
+
+      - name: Translate i18n files
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          vue-i18n-translator \
+            --root . \
+            --source en-US \
+            --target pl \
+            --model gpt-4o-mini \
+            --formality formal
+
+      - name: Check for changes
+        id: verify-changed-files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Files have been modified"
+            git status --porcelain
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No files have been modified"
+          fi
+
+      - name: Commit and push changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add src/i18n/*.json
+          git commit -m "Auto-translate i18n files [skip ci]"
+          git push
+
+  validate-translations:
+    name: Validate Translations on PR
+    runs-on: ubuntu-latest
+    
+    # Only run on PRs to validate without using API
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm install -g vue-i18n-translator
+          npm install -g jsonlint
+
+      - name: Validate JSON structure
+        run: |
+          echo "Validating JSON files structure..."
+          for file in src/i18n/*.json; do
+            echo "Checking $file"
+            jsonlint -q "$file"
+          done
+
+      - name: Test translation setup (dry run)
+        run: |
+          echo "Testing translation configuration..."
+          vue-i18n-translator \
+            --root . \
+            --source en-US \
+            --target pl \
+            --mock \
+            --model gpt-4o-mini
