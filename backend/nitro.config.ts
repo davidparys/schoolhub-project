@@ -9,12 +9,6 @@ export default defineNitroConfig({
             bypassToken: process.env.VERCEL_BYPASS_TOKEN
         }
     },
-    routeRules: {
-        // Disable CORS for all routes
-        '/**': {
-            cors: false
-        }
-    },
     experimental: {
         wasm: false
     },

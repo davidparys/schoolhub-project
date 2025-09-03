@@ -37,8 +37,6 @@ const apiClient: AxiosInstance = axios.create({
     headers: {
         'Content-Type': 'application/json',
         // no need to hide the key as it is going to be a public api anyway
-        // bypass for vercel protection routes
-        'x-vercel-protection-bypass': 'kcGyMXkMMZkqHtBMKgFBbv9XMa9Rqsbk'
 
 
     },
