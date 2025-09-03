@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
         },
         servers: [
             {
-                url: config.corsOrigin || 'https://schoolhub-project.vercel.app',
+                url: config.corsOrigin || 'https://schoolhub-project-production.up.railway.app/',
                 description: 'Development server',
             },
         ],

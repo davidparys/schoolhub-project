@@ -11,7 +11,7 @@
             "headers": [
                 {
                     "key": "Access-Control-Allow-Origin",
-                    "value": "https://schoolhub-project.vercel.app"
+                    "value": "https://schoolhub-project-production.up.railway.app/"
                 },
                 {
                     "key": "Access-Control-Allow-Methods",
