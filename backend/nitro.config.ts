@@ -15,7 +15,7 @@ export default defineNitroConfig({
     runtimeConfig: {
         supabaseUrl: process.env.SUPABASE_URL || 'https://your-project.supabase.co',
         supabaseAnonKey: process.env.SUPABASE_ANON_KEY || 'your-anon-key',
-        corsOrigin: process.env.CORS_ORIGIN || 'https://schoolhub-project-production.up.railway.app/',
+        corsOrigin: process.env.CORS_ORIGIN || 'https://schoolhub-project.vercel.app',
         public: {}
     }
 })
