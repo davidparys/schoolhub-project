@@ -1,3 +1,4 @@
+import { defineEventHandler, getRouterParam, readBody, createError, setResponseStatus } from 'h3'
 import { StudentsService } from '../../../../services/students'
 
 export default defineEventHandler(async (event) => {
@@ -26,7 +27,7 @@ export default defineEventHandler(async (event) => {
 
         setResponseStatus(event, 204)
         return null
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error assigning student to class:', error)
 
         if (error.statusCode) {
