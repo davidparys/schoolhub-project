@@ -2,9 +2,6 @@
 
 A production-ready Single Page Application (SPA) built with Quasar.dev for managing students and classes. Features real-time data synchronization with Supabase backend, modern CI/CD pipeline, and automated translations.
 
-![CI/CD Status](https://github.com/davidparys/quasar/actions/workflows/ci.yml/badge.svg)
-![Security](https://github.com/davidparys/quasar/actions/workflows/codeql.yml/badge.svg)
-![Translation Status](https://github.com/davidparys/quasar/actions/workflows/i18n-translate.yml/badge.svg)
 
 ## ✨ Features
 
