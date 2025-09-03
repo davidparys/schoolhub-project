@@ -49,7 +49,7 @@ apiClient.interceptors.request.use(
         // config.headers.Authorization = `Bearer ${getAuthToken()}`;
         return config;
     },
-    (error) => {
+    (error: any) => {
         return Promise.reject(error);
     }
 );
@@ -147,7 +147,7 @@ export class StudentsAPI {
     }
 
     static async removeFromClass(studentId: string, classId: string): Promise<void> {
-        await apiRequest<void>('DELETE', `/students/${studentId}/classes/${classId}`);
+        await apiRequest<void>('DELETE', `/students/classes/delete?studentId=${studentId}&classId=${classId}`);
     }
 }
 

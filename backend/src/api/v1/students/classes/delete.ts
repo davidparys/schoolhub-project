@@ -1,9 +1,10 @@
-import { StudentsService } from '../../../../../services/students'
+import { StudentsService } from '../../../../services/students'
 
 export default defineEventHandler(async (event) => {
     try {
-        const studentId = getRouterParam(event, 'studentId')
-        const classId = getRouterParam(event, 'classId')
+        const query = getQuery(event)
+        const studentId = query.studentId as string
+        const classId = query.classId as string
 
         if (!studentId) {
             throw createError({
@@ -28,7 +29,7 @@ export default defineEventHandler(async (event) => {
     } catch (error) {
         console.error('Error removing student from class:', error)
 
-        if (error.statusCode) {
+        if (error && typeof error === 'object' && 'statusCode' in error) {
             throw error
         }
 

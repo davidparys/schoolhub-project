@@ -1,10 +1,11 @@
+import { defineEventHandler, createError } from 'h3'
 import { StudentsService } from '../../../services/students'
 
 export default defineEventHandler(async (event) => {
     try {
         const studentsData = await StudentsService.getAll()
         return { data: studentsData }
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error fetching students:', error)
         throw createError({
             statusCode: 500,

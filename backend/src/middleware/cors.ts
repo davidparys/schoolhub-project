@@ -11,7 +11,7 @@ export default defineEventHandler((event) => {
     })
 
     // Handle preflight OPTIONS request
-    if (getMethod(event) === 'OPTIONS') {
+    if (event.method === 'OPTIONS') {
         setResponseStatus(event, 200)
         return null
     }

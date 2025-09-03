@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
 
         setResponseStatus(event, 201)
         return { data: student }
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error creating student:', error)
 
         if (error.statusCode) {
